@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.4</version>
+	</parent>
+	
+	<groupId>com.github.mickaelbenes</groupId>
+	<artifactId>todo-list-backend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>todo-list-backend</name>
+	<description>Backend Spring Boot application for the todo-list project backend.</description>
+
+    <modules>
+        <module>todo-list-persistence</module>
+        <module>todo-list-service</module>
+        <module>todo-list-rest</module>
+    </modules>
+	
+	<properties>
+		<java.version>17</java.version>
+        <sourceEncoding>UTF-8</sourceEncoding>
+        <resourceEncoding>UTF-8</resourceEncoding>
+		
+		<!-- dependencies versions -->
+        <spock.version>2.2-M1-groovy-4.0</spock.version>
+		
+		<!-- plugins versions -->
+        <gmavenplus-plugin.version>1.13.1</gmavenplus-plugin.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- project dependencies -->
+			<dependency>
+				<groupId>com.github.mickaelbenes</groupId>
+				<artifactId>todo-list-persistence</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.mickaelbenes</groupId>
+				<artifactId>todo-list-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		
+			<!-- test dependencies -->
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>${spock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-spring</artifactId>
+                <version>${spock.version}</version>
+                <scope>test</scope>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.gmavenplus</groupId>
+                    <artifactId>gmavenplus-plugin</artifactId>
+                    <version>${gmavenplus-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>addTestSources</goal>
+                                <goal>compileTests</goal>
+                                <goal>removeTestStubs</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
